@@ -7,7 +7,9 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.afurkantitiz.newsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
