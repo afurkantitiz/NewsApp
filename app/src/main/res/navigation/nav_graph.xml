@@ -9,5 +9,34 @@
         android:id="@+id/newsFragment"
         android:name="com.afurkantitiz.newsapp.ui.news.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <argument
+            android:name="currentNews"
+            app:argType="com.afurkantitiz.newsapp.data.entitiy.Article" />
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.afurkantitiz.newsapp.ui.newsdetail.NewsDetailFragment"
+        android:label="fragment_news_detail"
+        tools:layout="@layout/fragment_news_detail" >
+        <argument
+            android:name="currentNews"
+            app:argType="com.afurkantitiz.newsapp.data.entitiy.Article"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_newsDetailFragment_to_newsDetailSourceFragment"
+            app:destination="@id/newsDetailSourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailSourceFragment"
+        android:name="com.afurkantitiz.newsapp.ui.newsdetail.NewsDetailSourceFragment"
+        android:label="fragment_news_detail_source"
+        tools:layout="@layout/fragment_news_detail_source" >
+        <argument
+            android:name="currentSourceUrl"
+            app:argType="string" />
+    </fragment>
 </navigation>
