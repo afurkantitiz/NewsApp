@@ -11,7 +11,7 @@ import com.afurkantitiz.newsapp.databinding.ItemNewsCardBinding
 import com.bumptech.glide.Glide
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
-    private lateinit var newsList: List<Article>
+    private var newsList: List<Article> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter.NewsViewHolder {
         val binding =
@@ -31,6 +31,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
             .with(holder.binding.newsImage.context)
             .load(news.urlToImage)
             .placeholder(R.drawable.image_not_found)
+            .error(R.drawable.image_not_found)
             .into(holder.binding.newsImage)
 
         holder.binding.newsCardView.setOnClickListener {

@@ -10,9 +10,6 @@
         android:name="com.afurkantitiz.newsapp.ui.news.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
-        <argument
-            android:name="currentNews"
-            app:argType="com.afurkantitiz.newsapp.data.entitiy.Article" />
         <action
             android:id="@+id/action_newsFragment_to_newsDetailFragment"
             app:destination="@id/newsDetailFragment" />
@@ -39,4 +36,9 @@
             android:name="currentSourceUrl"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.afurkantitiz.newsapp.ui.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.afurkantitiz.newsapp.base.BaseFragment
 import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailSourceBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class NewsDetailSourceFragment :
     BaseFragment<FragmentNewsDetailSourceBinding>(FragmentNewsDetailSourceBinding::inflate) {
     private val args: NewsDetailSourceFragmentArgs by navArgs()

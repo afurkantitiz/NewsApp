@@ -10,4 +10,6 @@
     <string name="author">Author</string>
     <string name="calendar">Calendar</string>
     <string name="news_source">News Source</string>
+    <string name="news">News</string>
+    <string name="favorites">Favorites</string>
 </resources>

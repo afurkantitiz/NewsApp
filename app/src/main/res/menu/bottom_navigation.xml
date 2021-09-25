@@ -3,5 +3,10 @@
     <item
         android:id="@+id/newsFragment"
         android:icon="@drawable/ic_launcher_background"
-        android:title="News" />
+        android:title="@string/news" />
+
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/favorites" />
 </menu>

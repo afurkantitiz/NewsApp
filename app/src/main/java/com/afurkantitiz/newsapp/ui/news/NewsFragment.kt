@@ -22,8 +22,8 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViews()
         getNewsByQuery("besiktas")
+        initViews()
         searchViewListener()
     }
 

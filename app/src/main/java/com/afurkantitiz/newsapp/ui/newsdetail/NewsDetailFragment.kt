@@ -5,17 +5,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.afurkantitiz.newsapp.base.BaseFragment
+import com.afurkantitiz.newsapp.data.entitiy.ArticleRoom
 import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailBinding
 import com.afurkantitiz.newsapp.ui.MainActivity
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 
+@AndroidEntryPoint
 class NewsDetailFragment :
     BaseFragment<FragmentNewsDetailBinding>(FragmentNewsDetailBinding::inflate) {
+
     private val args: NewsDetailFragmentArgs by navArgs()
+    private val viewModel: NewsDetailViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,7 +43,20 @@ class NewsDetailFragment :
             }
 
             likeButton.setOnClickListener {
-                Toast.makeText(requireContext(), "Like Button", Toast.LENGTH_SHORT).show()
+                args.currentNews.let {
+                    viewModel.addFavorite(
+                        ArticleRoom(
+                            0,
+                            args.currentNews!!.author,
+                            args.currentNews!!.content,
+                            args.currentNews!!.description,
+                            args.currentNews!!.publishedAt,
+                            args.currentNews!!.title,
+                            args.currentNews!!.url,
+                            args.currentNews!!.urlToImage,
+                        )
+                    )
+                }
             }
 
             backButton.setOnClickListener {

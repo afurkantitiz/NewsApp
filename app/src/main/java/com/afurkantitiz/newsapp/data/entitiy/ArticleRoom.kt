@@ -1,12 +1,10 @@
 package com.afurkantitiz.newsapp.data.entitiy
-import android.os.Parcelable
+
 import androidx.room.*
-import kotlinx.parcelize.Parcelize
 import java.util.*
 
-@Parcelize
 @Entity(tableName = "article")
-data class Article(
+data class ArticleRoom(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
     @ColumnInfo(name = "author") val author: String,
@@ -16,4 +14,4 @@ data class Article(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "url") val url: String,
     @ColumnInfo(name = "urlToImage") val urlToImage: String
-): Parcelable
+)
