@@ -6,6 +6,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.afurkantitiz.newsapp.R
+import com.afurkantitiz.newsapp.utils.gone
+import com.afurkantitiz.newsapp.utils.show
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,6 +25,14 @@ class MainActivity : AppCompatActivity() {
         navController = Navigation.findNavController(this, R.id.navHostFragment)
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController)
+    }
+
+    fun hideNavigationBar() {
+        bottomNavigationView.gone()
+    }
+
+    fun showNavigationBar() {
+        bottomNavigationView.show()
     }
 
     override fun onSupportNavigateUp(): Boolean {
