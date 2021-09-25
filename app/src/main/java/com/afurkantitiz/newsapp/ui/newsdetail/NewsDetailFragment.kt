@@ -1,6 +1,7 @@
 package com.afurkantitiz.newsapp.ui.newsdetail
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,7 +38,14 @@ class NewsDetailFragment : Fragment() {
     private fun onClickListener() {
         binding.apply {
             shareButton.setOnClickListener {
-                Toast.makeText(requireContext(), "Share Button", Toast.LENGTH_SHORT).show()
+                val shareIntent = Intent().apply {
+                    args.currentNews.let {
+                        this.action= Intent.ACTION_SEND
+                        this.putExtra(Intent.EXTRA_TEXT, args.currentNews!!.url)
+                        this.type="text/plain"
+                    }
+                }
+                startActivity(Intent.createChooser(shareIntent, "News Url"))
             }
 
             likeButton.setOnClickListener {
