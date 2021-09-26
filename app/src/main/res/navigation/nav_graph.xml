@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/newsFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/newsFragment"
@@ -41,4 +41,13 @@
         android:name="com.afurkantitiz.newsapp.ui.favorite.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.afurkantitiz.newsapp.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
 </navigation>
