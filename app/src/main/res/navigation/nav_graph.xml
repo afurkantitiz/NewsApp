@@ -40,7 +40,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.afurkantitiz.newsapp.ui.favorite.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.afurkantitiz.newsapp.ui.splash.SplashFragment"

@@ -1,21 +1,21 @@
 package com.afurkantitiz.newsapp.data.local
 
-import com.afurkantitiz.newsapp.data.entitiy.ArticleRoom
+import com.afurkantitiz.newsapp.data.entitiy.Article
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(
     private val sharedPrefManager: SharedPrefManager,
     private val articleDao: ArticleDao
 ) {
-    fun getFavoriteNews(): List<ArticleRoom>{
+    fun getFavoriteNews(): List<Article>{
         return articleDao.getFavoriteNews()
     }
 
-    fun addFavorite(article: ArticleRoom) {
+    fun addFavorite(article: Article) {
         articleDao.addFavorite(article)
     }
 
-    fun unFavorite(article: ArticleRoom) {
+    fun unFavorite(article: Article) {
         articleDao.unFavorite(article)
     }
 }

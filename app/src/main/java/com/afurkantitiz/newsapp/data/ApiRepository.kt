@@ -1,7 +1,6 @@
 package com.afurkantitiz.newsapp.data
 
 import com.afurkantitiz.newsapp.data.entitiy.Article
-import com.afurkantitiz.newsapp.data.entitiy.ArticleRoom
 import com.afurkantitiz.newsapp.data.local.LocalDataSource
 import com.afurkantitiz.newsapp.data.remote.RemoteDataSource
 import com.afurkantitiz.newsapp.utils.performNetworkOperation
@@ -17,7 +16,7 @@ class ApiRepository @Inject constructor(
 
     fun getFavoriteNews() = localDataSource.getFavoriteNews()
 
-    fun addFavorite(article: ArticleRoom) = localDataSource.addFavorite(article)
+    fun addFavorite(article: Article) = localDataSource.addFavorite(article)
 
-    fun unFavorite(article: ArticleRoom) = localDataSource.unFavorite(article)
+    fun unFavorite(article: Article) = localDataSource.unFavorite(article)
 }

@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.daimajia.swipe.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/newsCardView"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipeCard"
-    app:clickToClose="true">
-
-   <LinearLayout
-       android:layout_width="75dp"
-       android:layout_height="match_parent"
-       android:id="@+id/linear_sol"
-       android:gravity="center"
-       android:orientation="vertical">
-
-       <ImageButton
-           android:id="@+id/deleteButton"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:background="@android:color/transparent"
-           android:src="@drawable/ic_baseline_delete"
-           android:contentDescription="@string/deletebutton" />
-
-   </LinearLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -71,5 +52,4 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.daimajia.swipe.SwipeLayout>
+</androidx.cardview.widget.CardView>

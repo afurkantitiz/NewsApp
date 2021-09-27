@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.afurkantitiz.newsapp.base.BaseFragment
-import com.afurkantitiz.newsapp.data.entitiy.ArticleRoom
+import com.afurkantitiz.newsapp.data.entitiy.Article
 import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailBinding
 import com.afurkantitiz.newsapp.ui.MainActivity
 import com.bumptech.glide.Glide
@@ -45,7 +45,7 @@ class NewsDetailFragment :
             likeButton.setOnClickListener {
                 args.currentNews.let {
                     viewModel.addFavorite(
-                        ArticleRoom(
+                        Article(
                             0,
                             args.currentNews?.author ?: "Unknown",
                             args.currentNews!!.content,

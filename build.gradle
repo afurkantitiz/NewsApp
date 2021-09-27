@@ -3,17 +3,18 @@ buildscript {
     ext.hilt_version = "2.38.1"
     ext.nav_version = '2.3.5'
     ext.room_version = '2.3.0'
+    ext.safe_args_version = '2.3.5'
 
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-
     }
 }
 

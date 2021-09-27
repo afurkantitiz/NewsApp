@@ -1,23 +1,28 @@
 package com.afurkantitiz.newsapp.ui.favorite
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afurkantitiz.newsapp.R
-import com.afurkantitiz.newsapp.data.entitiy.ArticleRoom
-import com.afurkantitiz.newsapp.databinding.ItemFavouriteSwipeCardBinding
+import com.afurkantitiz.newsapp.data.entitiy.Article
 import com.bumptech.glide.Glide
-import com.daimajia.swipe.SwipeLayout
+import com.afurkantitiz.newsapp.databinding.ItemNewsCardBinding
 
-class FavouriteAdapter: RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder>() {
-    private var favouriteList: List<ArticleRoom> = emptyList()
+class FavouriteAdapter : RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolder>() {
+    private var favouriteList: List<Article> = emptyList()
     private var listener: IUnFavouriteItem? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouriteAdapter.FavouriteViewHolder {
-        val binding = ItemFavouriteSwipeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FavouriteAdapter.FavouriteViewHolder {
+        val binding = ItemNewsCardBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return FavouriteViewHolder(binding)
     }
 
@@ -28,13 +33,6 @@ class FavouriteAdapter: RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolde
             newsTitle.text = favourite.title
             newsDescription.text = favourite.description
 
-            deleteButton.setOnClickListener {
-                listener?.let {
-                    listener?.unFavouriteItem(favourite, position)
-                    notifyItemRemoved(position)
-                }
-            }
-
             Glide
                 .with(newsImage.context)
                 .load(favourite.urlToImage)
@@ -42,20 +40,24 @@ class FavouriteAdapter: RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolde
                 .error(R.drawable.image_not_found)
                 .into(newsImage)
 
-            swipeCard.setOnClickListener {
-
+            newsCardView.setOnClickListener {
+                val action =
+                    FavoriteFragmentDirections.actionFavoriteFragmentToNewsDetailFragment(favourite)
+                it.findNavController().navigate(action)
             }
-
-            swipeCard.showMode = SwipeLayout.ShowMode.PullOut
-            swipeCard.isRightSwipeEnabled = false
-            swipeCard.addDrag(SwipeLayout.DragEdge.Left, holder.binding.linearSol)
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFavourite(favourite: List<ArticleRoom>) {
+    fun setFavourite(favourite: List<Article>) {
         this.favouriteList = favourite
         notifyDataSetChanged()
+    }
+
+    fun unFavourite(position: Int) {
+        listener?.let {
+            listener?.unFavouriteItem(favouriteList[position], position)
+        }
     }
 
     fun addListener(listener: IUnFavouriteItem) {
@@ -68,5 +70,6 @@ class FavouriteAdapter: RecyclerView.Adapter<FavouriteAdapter.FavouriteViewHolde
 
     override fun getItemCount(): Int = favouriteList.size
 
-    inner class FavouriteViewHolder(val binding: ItemFavouriteSwipeCardBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class FavouriteViewHolder(val binding: ItemNewsCardBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
