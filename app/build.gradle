@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.afurkantitiz.newsapp"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -83,9 +83,6 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
-    implementation ('com.github.bumptech.glide:okhttp3-integration:4.12.0'){
-        exclude group: 'glide-parent'
-    }
 
     //Lottie
     def lottie_version = "3.7.1"
@@ -95,4 +92,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
+
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    implementation 'com.nineoldandroids:library:2.4.0'
 }

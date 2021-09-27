@@ -47,7 +47,7 @@ class NewsDetailFragment :
                     viewModel.addFavorite(
                         ArticleRoom(
                             0,
-                            args.currentNews!!.author,
+                            args.currentNews?.author ?: "Unknown",
                             args.currentNews!!.content,
                             args.currentNews!!.description,
                             args.currentNews!!.publishedAt,
@@ -57,6 +57,11 @@ class NewsDetailFragment :
                         )
                     )
                 }
+                Toast.makeText(
+                    requireContext(),
+                    "Successfully added to favourites",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             backButton.setOnClickListener {
@@ -82,7 +87,7 @@ class NewsDetailFragment :
             binding.apply {
                 newsDetailTitle.text = args.currentNews!!.title
                 newsDetailDescription.text = args.currentNews!!.description
-                newsDetailAuthor.text = args.currentNews!!.author
+                newsDetailAuthor.text = args.currentNews?.author ?: "Unknown"
                 newsDetailCalendar.text =
                     SimpleDateFormat("dd/MM/yyyy").format(args.currentNews!!.publishedAt).toString()
 

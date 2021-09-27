@@ -1,22 +1,56 @@
 package com.afurkantitiz.newsapp.ui.favorite
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.afurkantitiz.newsapp.base.BaseFragment
 import com.afurkantitiz.newsapp.data.entitiy.ArticleRoom
 import com.afurkantitiz.newsapp.databinding.FragmentFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteBinding::inflate) {
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteBinding::inflate),
+    IUnFavouriteItem {
     private val viewModel: FavoriteViewModel by viewModels()
+    private val favouriteAdapter: FavouriteAdapter = FavouriteAdapter()
+
+    private lateinit var favoriteNewsList: ArrayList<ArticleRoom>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val favoriteNewsList = viewModel.getFavoriteNews() as ArrayList<ArticleRoom>
-        Log.v("favoriteList", "${favoriteNewsList.size}")
+        initViews()
     }
+
+    private fun initViews() {
+        favoriteNewsList = viewModel.getFavoriteNews() as ArrayList<ArticleRoom>
+        favouriteAdapter.addListener(this)
+
+        binding.apply {
+            favouriteRecyclerView.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
+            favouriteRecyclerView.addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    LinearLayoutManager.VERTICAL
+                )
+            )
+            favouriteAdapter.setFavourite(favoriteNewsList)
+            favouriteRecyclerView.adapter = favouriteAdapter
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun unFavouriteItem(articleRoom: ArticleRoom, position: Int) {
+        viewModel.unFavouriteNews(articleRoom)
+        favoriteNewsList.removeAt(position)
+        favouriteAdapter.setFavourite(favoriteNewsList)
+        favouriteAdapter.notifyItemRemoved(position)
+        favouriteAdapter.notifyDataSetChanged()
+    }
+
 }

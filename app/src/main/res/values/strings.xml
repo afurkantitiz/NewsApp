@@ -12,4 +12,6 @@
     <string name="news_source">News Source</string>
     <string name="news">News</string>
     <string name="favorites">Favorites</string>
+    <string name="favourites">Favourites</string>
+    <string name="deletebutton">DeleteButton</string>
 </resources>

@@ -5,15 +5,13 @@ import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Parcelize
-@Entity(tableName = "article")
 data class Article(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "author") val author: String,
-    @ColumnInfo(name = "content") val content: String,
-    @ColumnInfo(name = "description") val description: String,
-    @ColumnInfo(name = "publishedAt") val publishedAt: Date,
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "url") val url: String,
-    @ColumnInfo(name = "urlToImage") val urlToImage: String
+    val id: Int = 0,
+    val author: String,
+    val content: String,
+    val description: String,
+    val publishedAt: Date,
+    val title: String,
+    val url: String,
+    val urlToImage: String
 ): Parcelable

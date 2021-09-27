@@ -6,8 +6,8 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.afurkantitiz.newsapp.base.BaseFragment
-import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailSourceBinding
 import dagger.hilt.android.AndroidEntryPoint
+import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailSourceBinding
 
 @AndroidEntryPoint
 class NewsDetailSourceFragment :
