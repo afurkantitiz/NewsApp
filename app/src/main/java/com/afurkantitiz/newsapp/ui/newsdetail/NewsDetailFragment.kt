@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.afurkantitiz.newsapp.R
 import com.afurkantitiz.newsapp.base.BaseFragment
 import com.afurkantitiz.newsapp.data.entitiy.Article
 import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailBinding
@@ -25,8 +26,19 @@ class NewsDetailFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initViews()
         onClickListener()
+    }
+
+    private fun isInFavourite(): Boolean {
+        var isInFavourite = false
+
+        for (news in viewModel.getFavoriteNews()) {
+            isInFavourite = news.title == args.currentNews?.title
+            if (isInFavourite) break
+        }
+        return isInFavourite
     }
 
     private fun onClickListener() {
@@ -43,14 +55,8 @@ class NewsDetailFragment :
             }
 
             likeButton.setOnClickListener {
-                var isInFavourite = false
                 args.currentNews.let {
-                    for (news in viewModel.getFavoriteNews()) {
-                        isInFavourite = news.title == args.currentNews?.title
-                        if (isInFavourite) break
-                    }
-
-                    if (!isInFavourite) {
+                    if (!isInFavourite()) {
                         viewModel.addFavorite(
                             Article(
                                 0,
@@ -68,6 +74,7 @@ class NewsDetailFragment :
                             "Successfully added to favourites",
                             Toast.LENGTH_SHORT
                         ).show()
+                        binding.likeButton.setImageResource(R.drawable.ic_add_favourite)
                     } else {
                         Toast.makeText(
                             requireContext(),
@@ -104,6 +111,9 @@ class NewsDetailFragment :
                 newsDetailAuthor.text = args.currentNews?.author ?: "Unknown"
                 newsDetailCalendar.text =
                     SimpleDateFormat("dd/MM/yyyy").format(args.currentNews!!.publishedAt).toString()
+
+                if (isInFavourite()) likeButton.setImageResource(R.drawable.ic_add_favourite)
+                else likeButton.setImageResource(R.drawable.ic_un_favourite)
 
                 Glide
                     .with(requireContext())

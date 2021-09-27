@@ -34,7 +34,7 @@
             android:contentDescription="@string/like_button"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:src="@drawable/ic_add_favourite"
+            tools:src="@drawable/ic_add_favourite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
