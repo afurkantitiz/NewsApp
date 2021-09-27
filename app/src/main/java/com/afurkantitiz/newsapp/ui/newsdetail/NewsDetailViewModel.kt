@@ -13,4 +13,8 @@ class NewsDetailViewModel @Inject constructor(
     fun addFavorite(articleRoom: Article){
         apiRepository.addFavorite(articleRoom)
     }
+
+    fun getFavoriteNews(): List<Article>{
+        return apiRepository.getFavoriteNews()
+    }
 }

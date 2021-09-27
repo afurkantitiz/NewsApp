@@ -43,25 +43,39 @@ class NewsDetailFragment :
             }
 
             likeButton.setOnClickListener {
+                var isInFavourite = false
                 args.currentNews.let {
-                    viewModel.addFavorite(
-                        Article(
-                            0,
-                            args.currentNews?.author ?: "Unknown",
-                            args.currentNews!!.content,
-                            args.currentNews!!.description,
-                            args.currentNews!!.publishedAt,
-                            args.currentNews!!.title,
-                            args.currentNews!!.url,
-                            args.currentNews!!.urlToImage,
+                    for (news in viewModel.getFavoriteNews()) {
+                        isInFavourite = news.title == args.currentNews?.title
+                        if (isInFavourite) break
+                    }
+
+                    if (!isInFavourite) {
+                        viewModel.addFavorite(
+                            Article(
+                                0,
+                                args.currentNews?.author ?: "Unknown",
+                                args.currentNews!!.content,
+                                args.currentNews!!.description,
+                                args.currentNews!!.publishedAt,
+                                args.currentNews!!.title,
+                                args.currentNews!!.url,
+                                args.currentNews!!.urlToImage,
+                            )
                         )
-                    )
+                        Toast.makeText(
+                            requireContext(),
+                            "Successfully added to favourites",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "This news is already in favourites",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-                Toast.makeText(
-                    requireContext(),
-                    "Successfully added to favourites",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
 
             backButton.setOnClickListener {
