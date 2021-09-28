@@ -10,8 +10,8 @@ class ApiRepository @Inject constructor(
     private var remoteDataSource: RemoteDataSource,
     private var localDataSource: LocalDataSource
 ) {
-    fun getNewsByQuery(query: String) = performNetworkOperation {
-        remoteDataSource.getNewsByQuery(query)
+    fun getNewsByQuery(query: String, page: Int) = performNetworkOperation {
+        remoteDataSource.getNewsByQuery(query, page)
     }
 
     fun getFavoriteNews() = localDataSource.getFavoriteNews()

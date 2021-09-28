@@ -14,9 +14,8 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     var apiRepository: ApiRepository
 ) : ViewModel() {
-    var newsList: ArrayList<Article>? = null
 
-    fun getNewsByQuery(query: String): LiveData<Resource<NewsResponse>>{
-        return apiRepository.getNewsByQuery(query)
+    fun getNewsByQuery(query: String, page: Int): LiveData<Resource<NewsResponse>>{
+        return apiRepository.getNewsByQuery(query, page)
     }
 }

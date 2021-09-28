@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface APIService {
-    @GET("everything?page=1&apiKey=564a8a088b1f4412ad7c61d426ff9bfa")
-    suspend fun getNewsByQuery(@Query("q") q: String): Response<NewsResponse>
+    @GET("everything?apiKey=022b316c1b3a455ab28a69c540b73f1e")
+    suspend fun getNewsByQuery(
+        @Query("q") q: String,
+        @Query("page") page: Int
+    ): Response<NewsResponse>
 }
