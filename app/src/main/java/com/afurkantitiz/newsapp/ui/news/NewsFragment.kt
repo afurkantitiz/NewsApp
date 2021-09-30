@@ -12,10 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.afurkantitiz.newsapp.base.BaseFragment
 import com.afurkantitiz.newsapp.data.entitiy.Article
 import com.afurkantitiz.newsapp.databinding.FragmentNewsBinding
-import com.afurkantitiz.newsapp.utils.Resource
-import com.afurkantitiz.newsapp.utils.gone
-import com.afurkantitiz.newsapp.utils.hideKeyboard
-import com.afurkantitiz.newsapp.utils.show
+import com.afurkantitiz.newsapp.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,6 +74,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
                 getNewsByQuery(query!!, pageChanger)
                 defaultQuery = query
                 hideKeyboard()
+                binding.newsRecyclerView.show()
                 return true
             }
 
@@ -86,6 +84,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
                     defaultQuery = "besiktas"
                     getNewsByQuery(defaultQuery, pageChanger)
                     binding.searchView.clearFocus()
+                    binding.newsRecyclerView.gone()
                 }
                 return true
             }
@@ -112,11 +111,9 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
         viewModel.getNewsByQuery(query, page).observe(viewLifecycleOwner, { response ->
             when (response.status) {
                 Resource.Status.LOADING -> {
-                    binding.newsRecyclerView.gone()
                     binding.progressBar.show()
                 }
                 Resource.Status.SUCCESS -> {
-                    binding.newsRecyclerView.show()
                     binding.progressBar.gone()
 
                     if (response.data?.articles?.size != 0) {

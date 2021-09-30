@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,6 +12,7 @@ import com.afurkantitiz.newsapp.base.BaseFragment
 import com.afurkantitiz.newsapp.data.entitiy.Article
 import com.afurkantitiz.newsapp.databinding.FragmentNewsDetailBinding
 import com.afurkantitiz.newsapp.ui.MainActivity
+import com.afurkantitiz.newsapp.utils.toast
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -69,19 +69,10 @@ class NewsDetailFragment :
                                 args.currentNews!!.urlToImage,
                             )
                         )
-                        Toast.makeText(
-                            requireContext(),
-                            "Successfully added to favourites",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        toast("Successfully added to favourites")
                         binding.likeButton.setImageResource(R.drawable.ic_add_favourite)
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "This news is already in favourites",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    } else
+                        toast("This news is already in favourites")
                 }
             }
 

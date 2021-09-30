@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 fun View.show() {
@@ -16,6 +17,10 @@ fun View.hide() {
 
 fun View.gone() {
     visibility = View.GONE
+}
+
+fun Fragment.toast(messageToShow: String, duration: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(requireContext(), messageToShow, duration).show()
 }
 
 fun Fragment.hideKeyboard() {

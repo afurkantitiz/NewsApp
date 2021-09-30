@@ -24,7 +24,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
         super.onViewCreated(view, savedInstanceState)
 
         initViews()
-
     }
 
     private fun initViews() {
@@ -57,5 +56,4 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(FragmentFavoriteB
         favouriteAdapter.notifyItemRemoved(position)
         favouriteAdapter.notifyDataSetChanged()
     }
-
 }
