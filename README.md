@@ -8,6 +8,7 @@ An application where you can read the latest news, go to the details of the news
 
 - Room DB
 - Mvvm archtitecture
+- Firebase Push Notification
 - Dagger Hilt for dependency injection
 - Coroutines for asynchronous operations
 - Retrofit and OkHttp for network operations
