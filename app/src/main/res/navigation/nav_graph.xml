@@ -53,5 +53,17 @@
         <action
             android:id="@+id/action_splashFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_onboardControllerFragment"
+            app:destination="@id/onboardControllerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onboardControllerFragment"
+        android:name="com.afurkantitiz.newsapp.ui.onboard.OnboardControllerFragment"
+        android:label="fragment_onboard_controller"
+        tools:layout="@layout/fragment_onboard_controller" >
+        <action
+            android:id="@+id/action_onboardControllerFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
 </navigation>

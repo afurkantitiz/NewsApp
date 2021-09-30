@@ -15,4 +15,13 @@
     <string name="favourites">Favourites</string>
     <string name="deletebutton">DeleteButton</string>
     <string name="logo">Logo</string>
+    <string name="first_onboard">First Onboard</string>
+    <string name="second_onboard">Second Onboard</string>
+    <string name="stay_connected">Stay Connected</string>
+    <string name="next">Next</string>
+    <string name="lorem_1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
+    <string name="daily_news">Daily News</string>
+    <string name="get_started">Get Started</string>
+    <string name="lorem_2">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words.</string>
+    <string name="error_fragment">ERROR FRAGMENT</string>
 </resources>
