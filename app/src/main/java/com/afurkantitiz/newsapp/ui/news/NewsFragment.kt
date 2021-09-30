@@ -1,7 +1,6 @@
 package com.afurkantitiz.newsapp.ui.news
 
 import android.annotation.SuppressLint
-import android.graphics.Rect
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.afurkantitiz.newsapp.base.BaseFragment
 import com.afurkantitiz.newsapp.data.entitiy.Article
 import com.afurkantitiz.newsapp.databinding.FragmentNewsBinding
@@ -32,10 +30,30 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getNewsByQuery(defaultQuery, pageChanger)
+        notificationTextControl()
         initViews()
         searchViewListener()
         onScrollListener()
+    }
+
+    private fun notificationTextControl() {
+        if (requireActivity().intent.extras != null) {
+            for (key in requireActivity().intent.extras!!.keySet()) {
+                if (key == "title") {
+                    defaultQuery = requireActivity().intent.extras!!.getString("title", "")
+                    break
+                } else defaultQuery = "Besiktas"
+            }
+
+            resetSearch()
+            binding.searchView.setQuery(defaultQuery, false)
+            getNewsByQuery(defaultQuery, pageChanger)
+        } else {
+            resetSearch()
+            defaultQuery = "Besiktas"
+            binding.searchView.setQuery(defaultQuery, false)
+            getNewsByQuery(defaultQuery, pageChanger)
+        }
     }
 
     private fun onScrollListener() {
@@ -72,11 +90,6 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
                 return true
             }
         })
-
-        binding.searchView.setOnCloseListener {
-            hideKeyboard()
-            false
-        }
     }
 
     private fun initViews() {
@@ -111,6 +124,9 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(FragmentNewsBinding::infl
 
                         val scrollDistance = newsList.size - response.data.articles.size
                         binding.newsRecyclerView.scrollToPosition(scrollDistance)
+
+                        newsAdapter.setNews(newsList)
+                        binding.newsRecyclerView.adapter = newsAdapter
                     }
                 }
                 Resource.Status.ERROR -> {
